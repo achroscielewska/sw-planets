@@ -1,0 +1,15 @@
+
+<div class="">
+  <div *ngFor="let planet of planetsToDisplay" class="">
+    <div data-test="book">
+      <div data-test="book-title">{{planet.name}}</div>
+    </div>
+  </div>
+
+  <div>count: {{count}}</div>
+  <div>previousPage: {{previousPage}}</div>
+  <div>nextPage: {{nextPage}}</div>
+  <button type="button" (click)="goToPrevPage()">previousPage</button>
+  <button type="button" (click)="goToNextPage()">nextPage</button>
+
+</div>
