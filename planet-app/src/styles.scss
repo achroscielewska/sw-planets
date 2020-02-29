@@ -1,0 +1,28 @@
+@import 'assets/config/normalize';
+@import 'assets/config/resets';
+
+@font-face {
+  font-family: "rubik-bold";
+  src:url('./assets/fonts/Rubik-Bold.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "rubik-italic";
+  src:url('./assets/fonts/Rubik-Italic.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "rubik-regular";
+  src:url('./assets/fonts/Rubik-Regular.ttf');
+  font-weight: 400;
+}
+
+@import 'assets/config/styleGuide';
+
+html,
+body {
+  height: 100%;
+}
+
