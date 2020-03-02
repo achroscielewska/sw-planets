@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { PlanetsService } from 'src/app/services/planets.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+
 import { PlanetsDto, Planet } from 'src/app/dto';
+import { PlanetsService } from 'src/app/services/planets.service';
 
 @Component({
   selector: 'app-planets-list',
@@ -9,55 +10,69 @@ import { PlanetsDto, Planet } from 'src/app/dto';
   styleUrls: ['./planets-list.component.scss']
 })
 export class PlanetsListComponent implements OnInit {
-  planets$: Observable<PlanetsDto>;
-
   planetsToDisplay: Planet[] = [];
-  count: number;
-  previousPage: number | null;
-  nextPage: number | null;
-  firstPage = 1;
 
-  noPlanetsToDisplay = 10;
+  maxNumberOfListEl: number;
+  maxNumberOfElPerPage: number;
+  numberOfFetchedEl: number;
+  nextPageToFetch = 1;
+
+  noElementsPerPage = 25;
+  sliceBegin = 0;
+  sliceEnd = -1;
 
   constructor(private planetsService: PlanetsService) { }
 
   ngOnInit() {
-    this.getDataToDisplay(this.firstPage);
+    this.initPlanetList();
   }
 
-  getDataToDisplay(pageToGet: number) {
-    this.planets$ = this.planetsService.getPlanetsList$(pageToGet);
-    this.planets$.subscribe(data => {
-      this.planetsToDisplay = data.results;
-      this.count = data.count;
+  private initPlanetList() {
+    this.planetsService.getPlanetsList(this.nextPageToFetch)
+      .subscribe(
+        (result: PlanetsDto) => {
+          this.maxNumberOfListEl = result.count;
+          this.maxNumberOfElPerPage = result.results.length;
 
-      if (data.previous) {
-        this.previousPage = pageToGet - 1;
-      }
+          this.setUpSliceList();
+          this.setUpListElementsView(result.results);
+        },
+        (err) => console.error(err)
+      );
+  }
 
-      if (data.next) {
-        this.nextPage = pageToGet + 1;
-      }
-    });
+  private setUpSliceList() {
+    this.sliceBegin = this.sliceEnd + 1;
+    this.sliceEnd = this.sliceBegin + this.noElementsPerPage;
+  }
+
+  private setUpListElementsView(results: Planet[]) {
+    this.planetsToDisplay.push(...results);
+    this.numberOfFetchedEl = this.planetsToDisplay.length;
+    this.nextPageToFetch++;
+
+    if (this.sliceEnd > this.numberOfFetchedEl && this.maxNumberOfListEl > this.numberOfFetchedEl) {
+      this.fetchMoreElements();
+    }
+  }
+
+  private fetchMoreElements() {
+    this.planetsService.getPlanetsList(this.nextPageToFetch)
+    .subscribe(
+      (result: PlanetsDto) => {
+        this.setUpListElementsView(result.results);
+      },
+      (err) => console.error(err)
+    );
+  }
+
+
+  goToNextPage() {
+
+
   }
 
   goToPrevPage() {
-    this.getDataToDisplay(this.previousPage);
-  }
-
-  goToNextPage() {
-    this.getDataToDisplay(this.nextPage);
-  }
-
-  changeNoPlanetsToDisplay(numberOfItems: number) {
-    const currentNoOfElements = this.planetsToDisplay.length;
-    if (currentNoOfElements === numberOfItems) {
-      return;
-    }
-
-    if (currentNoOfElements > numberOfItems) {
-      this.planetsToDisplay = this.planetsToDisplay.slice(0, numberOfItems);
-    }
 
   }
 

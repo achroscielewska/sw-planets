@@ -1,14 +1,21 @@
+<div>
+  planetsToDisplay: {{planetsToDisplay.length}}
+
+
+</div>
+
+<hr>
 
 <div class="">
-  <div *ngFor="let planet of planetsToDisplay" class="">
-    <div data-test="book">
-      <div data-test="book-title">{{planet.name}}</div>
+  <div *ngFor="let planet of planetsToDisplay | slice:sliceBegin:sliceEnd; let i = index" class="">
+    <div>
+      <div><p>{{i+1}} </p>{{planet.name}}</div>
     </div>
   </div>
+  <hr>
 
-  <div>count: {{count}}</div>
-  <div>previousPage: {{previousPage}}</div>
-  <div>nextPage: {{nextPage}}</div>
+
+  <hr>
   <button type="button" (click)="goToPrevPage()">previousPage</button>
   <button type="button" (click)="goToNextPage()">nextPage</button>
 
