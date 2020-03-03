@@ -2,7 +2,7 @@ export interface PlanetsDto {
   count: number;
   previous: string;
   next: string;
-  results: Planet[]
+  results: Planet[];
 }
 
 export interface Planet {

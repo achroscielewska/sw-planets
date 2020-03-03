@@ -4,8 +4,12 @@
 
 <hr>
 
+<select [ngModel]="noElementsPerPage" (ngModelChange)="onChangeNoElements($event)">
+  <option [value]="i" *ngFor="let i of arrElementsPerPage">{{i}}</option>
+</select>
+
 <div class="">
-  <div *ngFor="let planet of planetsToDisplay | slice:sliceBegin:sliceEnd; let i = index" class="">
+  <div *ngFor="let planet of planetsToDisplay | slice:sliceBegin:sliceEnd; index as i" class="">
     <div>
       <div><p>{{i+1}} </p>{{planet.name}}</div>
     </div>

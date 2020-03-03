@@ -16,7 +16,8 @@ export class PlanetsListComponent implements OnInit {
   numberOfFetchedEl: number;
   nextPageToFetch = 1;
 
-  noElementsPerPage = 25;
+  noElementsPerPage = 10;
+  arrElementsPerPage = [5, 10, 25, 100];
   sliceBegin = 0;
   sliceEnd = 0;
 
@@ -24,6 +25,15 @@ export class PlanetsListComponent implements OnInit {
 
   ngOnInit() {
     this.initPlanetList();
+  }
+
+  onChangeNoElements(newValue) {
+    this.noElementsPerPage = +newValue;
+    this.sliceEnd = this.sliceBegin + this.noElementsPerPage;
+
+    if (this.sliceEnd > this.numberOfFetchedEl && this.maxNumberOfListEl > this.numberOfFetchedEl) {
+      this.fetchMoreElements();
+    }
   }
 
   private initPlanetList() {
@@ -67,15 +77,19 @@ export class PlanetsListComponent implements OnInit {
 
   goToNextPage() {
     this.setUpSliceList();
-
     if (this.sliceEnd > this.numberOfFetchedEl && this.maxNumberOfListEl > this.numberOfFetchedEl) {
       this.fetchMoreElements();
     }
   }
 
   goToPrevPage() {
+    // TO DO back if no of options per page was changed
+    console.log(this.sliceEnd);
+    console.log(this.sliceBegin);
     this.sliceEnd = this.sliceBegin;
     this.sliceBegin = this.sliceBegin - this.noElementsPerPage;
+    console.log(this.sliceEnd);
+    console.log(this.sliceBegin);
   }
 
 }
