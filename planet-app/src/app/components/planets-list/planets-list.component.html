@@ -8,6 +8,14 @@
   <option [value]="i" *ngFor="let i of arrElementsPerPage">{{i}}</option>
 </select>
 
+<p>
+  maxNumberOfPages {{maxNumberOfPages}}
+</p>
+
+<p>
+  currentPageNumber {{currentPageNumber}}
+</p>
+
 <div class="">
   <div *ngFor="let planet of planetsToDisplay | slice:sliceBegin:sliceEnd; index as i" class="">
     <div>

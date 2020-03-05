@@ -11,8 +11,8 @@ import { PlanetsService } from 'src/app/services/planets.service';
 export class PlanetsListComponent implements OnInit {
   planetsToDisplay: Planet[] = [];
 
-  maxNumberOfListEl: number;
-  maxNumberOfElPerPage: number;
+  maxAPINumberOfListEl: number;
+  maxAPINumberOfElPerPage: number;
   numberOfFetchedEl: number;
   nextPageToFetch = 1;
 
@@ -20,6 +20,8 @@ export class PlanetsListComponent implements OnInit {
   arrElementsPerPage = [5, 10, 25, 100];
   sliceBegin = 0;
   sliceEnd = 0;
+  maxNumberOfPages: number;
+  currentPageNumber: number;
 
   constructor(private planetsService: PlanetsService) { }
 
@@ -27,27 +29,24 @@ export class PlanetsListComponent implements OnInit {
     this.initPlanetList();
   }
 
-  onChangeNoElements(newValue) {
-    this.noElementsPerPage = +newValue;
-    this.sliceEnd = this.sliceBegin + this.noElementsPerPage;
-
-    if (this.sliceEnd > this.numberOfFetchedEl && this.maxNumberOfListEl > this.numberOfFetchedEl) {
-      this.fetchMoreElements();
-    }
-  }
-
   private initPlanetList() {
     this.planetsService.getPlanetsList(this.nextPageToFetch)
       .subscribe(
         (result: PlanetsDto) => {
-          this.maxNumberOfListEl = result.count;
-          this.maxNumberOfElPerPage = result.results.length;
+          this.maxAPINumberOfListEl = result.count;
+          this.maxAPINumberOfElPerPage = result.results.length;
 
           this.setUpSliceList();
+          this.setUpPageCounter();
           this.setUpListElementsView(result.results);
         },
         (err) => console.error(err)
       );
+  }
+
+  private setUpPageCounter() {
+    this.maxNumberOfPages = Math.ceil(this.maxAPINumberOfListEl / this.noElementsPerPage)
+    this.currentPageNumber = Math.ceil(this.sliceBegin / this.noElementsPerPage) + 1
   }
 
   private setUpSliceList() {
@@ -60,7 +59,11 @@ export class PlanetsListComponent implements OnInit {
     this.numberOfFetchedEl = this.planetsToDisplay.length;
     this.nextPageToFetch++;
 
-    if (this.sliceEnd > this.numberOfFetchedEl && this.maxNumberOfListEl > this.numberOfFetchedEl) {
+    this.checkIfCanFetchMoreElements();
+  }
+
+  private checkIfCanFetchMoreElements() {
+    if (this.sliceEnd > this.numberOfFetchedEl && this.maxAPINumberOfListEl > this.numberOfFetchedEl) {
       this.fetchMoreElements();
     }
   }
@@ -75,21 +78,26 @@ export class PlanetsListComponent implements OnInit {
       );
   }
 
+  onChangeNoElements(newValue) {
+    if (this.noElementsPerPage < +newValue) {
+      this.sliceBegin = 0;
+    }
+    this.noElementsPerPage = +newValue;
+    this.sliceEnd = this.sliceBegin + this.noElementsPerPage;
+    this.checkIfCanFetchMoreElements();
+    this.setUpPageCounter();
+  }
+
   goToNextPage() {
     this.setUpSliceList();
-    if (this.sliceEnd > this.numberOfFetchedEl && this.maxNumberOfListEl > this.numberOfFetchedEl) {
-      this.fetchMoreElements();
-    }
+    this.setUpPageCounter();
+    this.checkIfCanFetchMoreElements();
   }
 
   goToPrevPage() {
-    // TO DO back if no of options per page was changed
-    console.log(this.sliceEnd);
-    console.log(this.sliceBegin);
     this.sliceEnd = this.sliceBegin;
     this.sliceBegin = this.sliceBegin - this.noElementsPerPage;
-    console.log(this.sliceEnd);
-    console.log(this.sliceBegin);
+    this.setUpPageCounter();
   }
 
 }
