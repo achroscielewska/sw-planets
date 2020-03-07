@@ -1,22 +1,33 @@
-@import '../../../assets/config/colors';
-@import '../../../assets/config/breakpoints';
-
+@import "../../../assets/config/colors";
+@import "../../../assets/config/breakpoints";
 
 .App-list-header {
-  background-color: $secondary-color;
+  background-color: $primary-color;
   text-align: center;
-  padding: 0 5px;
+  position: fixed;
+  width: 100%;
+  border-top: 1px solid;
   strong {
-    color: $accent-color
+    color: $accent-color;
   }
 }
 
-@media (min-width: $md) {}
+.App-list-header-wrapper {
+  padding-top: 60px;
+  max-width: 100%;
+
+}
+
+@media (min-width: $md) {
+}
 
 @media (min-width: $lg) {
-  .App-list-header {
-    padding: 0 20px;
+  .App-list-header-wrapper {
+    padding-top: 50px;
+    max-width: 960px;
+    margin: 0 auto;
   }
 }
 
-@media (min-width: $xl) {}
+@media (min-width: $xl) {
+}

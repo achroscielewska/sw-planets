@@ -1,9 +1,19 @@
 @import '../../../assets/config/colors';
 @import '../../../assets/config/breakpoints';
 
+.App-wrapper {
+  padding-top: 60px;
+}
+
 .App-header {
   padding: 5px;
   text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-image: url(src/assets/images/background.jpg);
   .App-logo {
     display: block;
     width: 100px;
@@ -15,6 +25,9 @@
 @media (min-width: $md) {}
 
 @media (min-width: $lg) {
+  .App-wrapper {
+    padding-top: 130px;
+  }
   .App-header {
     padding: 20px;
     .App-logo {

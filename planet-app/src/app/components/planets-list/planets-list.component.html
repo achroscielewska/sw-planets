@@ -1,28 +1,39 @@
 <div class="App-list-header">
-  <h2>Total No planets or planetoids in the Star Wars Universe: <strong>{{maxAPINumberOfListEl}}</strong></h2>
-</div>
-<select [ngModel]="noElementsPerPage" (ngModelChange)="onChangeNoElements($event)" name="noElementsPerPage">
-  <option [ngValue]="el" *ngFor="let el of arrElementsPerPage">{{el}}</option>
-</select>
-
-<div>
-  <input [ngModel]="currentPageNo" (ngModelChange)="onChangePageNumber($event)" name="currentPageNo" />
-  <p> / {{maxNumberOfPages}}</p>
+  <h2>Planets & planetoids in the Star Wars Universe: <strong>{{maxAPINumberOfListEl}}</strong></h2>
 </div>
 
-<hr />
-<div class="">
-  <div *ngFor="let planet of planetsToDisplay | slice:sliceBegin:sliceEnd; index as i" class="">
+<div class="App-list-header-wrapper">
+  <div class="App-search-bar">
     <div>
-      <div>
-        <p>{{i+1}} {{planet.name}} </p>
-      </div>
+      <input [ngModel]="searchInput" name="searchInput" />
+    </div>
+    <div>
+      <select [ngModel]="noElementsPerPage" (ngModelChange)="onChangeNoElements($event)" name="noElementsPerPage">
+        <option [ngValue]="el" *ngFor="let el of arrElementsPerPage">{{el}}</option>
+      </select>
+    </div>
+    <div>
+      <input [ngModel]="currentPageNo" (ngModelChange)="onChangePageNumber($event)" name="currentPageNo" />
+      <p> / {{maxNumberOfPages}}</p>
     </div>
   </div>
-  <hr>
 
-  <hr>
-  <button type="button" (click)="goToPrevPage()" [disabled]="currentPageNo===1">previousPage</button>
-  <button type="button" (click)="goToNextPage()" [disabled]="currentPageNo===maxNumberOfPages">nextPage</button>
+
+
+  <div class="">
+    <div *ngFor="let planet of planetsToDisplay | slice:sliceBegin:sliceEnd; index as i" class="">
+      <div>
+        <div>
+          <p>{{i+1}} {{planet.name}} </p>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <hr>
+    <button type="button" (click)="goToPrevPage()" [disabled]="currentPageNo===1">previousPage</button>
+    <button type="button" (click)="goToNextPage()" [disabled]="currentPageNo===maxNumberOfPages">nextPage</button>
+
+  </div>
 
 </div>

@@ -28,6 +28,8 @@ export class PlanetsListComponent implements OnInit {
   currentPageNo: number;
   pageNumberQueryChanged = new Subject<number>();
 
+  searchInput: string;
+
   constructor(private planetsService: PlanetsService) {
     this.pageNumberQueryChanged
       .pipe(debounceTime(800),
