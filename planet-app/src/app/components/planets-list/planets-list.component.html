@@ -3,22 +3,24 @@
 </div>
 
 <div class="App-list-header-wrapper">
-  <div class="App-search-bar">
-    <div>
-      <input [ngModel]="searchInput" name="searchInput" />
+  <div class="App-bar">
+    <div class="App-input App-search-bar">
+      <input [ngModel]="searchInput" name="searchInput" placeholder="Search"/>
     </div>
-    <div>
-      <select [ngModel]="noElementsPerPage" (ngModelChange)="onChangeNoElements($event)" name="noElementsPerPage">
-        <option [ngValue]="el" *ngFor="let el of arrElementsPerPage">{{el}}</option>
-      </select>
-    </div>
-    <div>
-      <input [ngModel]="currentPageNo" (ngModelChange)="onChangePageNumber($event)" name="currentPageNo" />
-      <p> / {{maxNumberOfPages}}</p>
+    <div class="App-bar-navigation">
+      <div class="App-input">
+        <select [ngModel]="noElementsPerPage" (ngModelChange)="onChangeNoElements($event)" name="noElementsPerPage">
+          <option [ngValue]="el" *ngFor="let el of arrElementsPerPage">{{el}}</option>
+        </select>
+      </div>
+      <div class="App-bar-navigation-counter">
+        <div class="App-input App-current-page-input">
+          <input [ngModel]="currentPageNo" (ngModelChange)="onChangePageNumber($event)" name="currentPageNo" />
+        </div>
+        <p class="App-max-no-pages"> / {{maxNumberOfPages}}</p>
+      </div>
     </div>
   </div>
-
-
 
   <div class="">
     <div *ngFor="let planet of planetsToDisplay | slice:sliceBegin:sliceEnd; index as i" class="">

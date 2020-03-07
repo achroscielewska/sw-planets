@@ -13,12 +13,80 @@
 }
 
 .App-list-header-wrapper {
-  padding-top: 60px;
+  padding: 60px 10px 0 10px;
   max-width: 100%;
+}
 
+.App-bar {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0;
+}
+
+.App-input {
+  border-radius: 5px;
+  background-color: $input-color;
+  height: 40px;
+  margin: 0 3px;
+  input,
+  select {
+    height: 40px;
+    background-color: $input-color;
+    border: unset;
+    padding: 5px;
+    color: $hover-color;
+  }
+}
+
+*:focus {
+  outline: none;
+}
+
+
+.App-search-bar {
+  margin-bottom: 5px;
+  input {
+    width: 80%;
+  }
+}
+
+.App-bar-navigation {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.App-bar-navigation-counter {
+  display: flex;
+  font-size: 1rem;
+}
+
+.App-current-page-input {
+  input {
+    width: 50px;
+    text-align: center;
+  }
+}
+
+.App-max-no-pages {
+  line-height: 40px;
+  color: $hover-color;
 }
 
 @media (min-width: $md) {
+  .App-list-header-wrapper {
+  }
+  .App-bar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .App-search-bar {
+    width: 40%;
+    margin: unset;
+    input {
+      width: 80%;
+    }
+  }
 }
 
 @media (min-width: $lg) {
@@ -26,6 +94,14 @@
     padding-top: 50px;
     max-width: 960px;
     margin: 0 auto;
+  }
+
+  .App-search-bar {
+    width: 30%;
+    margin: unset;
+    input {
+      width: 80%;
+    }
   }
 }
 
