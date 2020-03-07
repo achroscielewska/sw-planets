@@ -42,7 +42,6 @@
   outline: none;
 }
 
-
 .App-search-bar {
   margin-bottom: 5px;
   input {
@@ -72,9 +71,21 @@
   color: $hover-color;
 }
 
-@media (min-width: $md) {
-  .App-list-header-wrapper {
+.App-btns-container {
+  button {
+    width: 100%;
+    height: 50px;
+    background-color: $primary-color;
+    margin: 5px 0;
+    border-radius: 5px;
   }
+  button:hover {
+    border: 2px solid $accent-color;
+    box-shadow: 0 0 6px 2px rgba(237,236,81,0.7);
+  }
+}
+
+@media (min-width: $md) {
   .App-bar {
     flex-direction: row;
     justify-content: space-between;
@@ -85,6 +96,16 @@
     margin: unset;
     input {
       width: 80%;
+    }
+  }
+
+  .App-btns-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    button {
+      width: 20%;
+      margin: 0 5px;
     }
   }
 }

@@ -5,7 +5,7 @@
 <div class="App-list-header-wrapper">
   <div class="App-bar">
     <div class="App-input App-search-bar">
-      <input [ngModel]="searchInput" name="searchInput" placeholder="Search"/>
+      <input [ngModel]="searchInput" name="searchInput" placeholder="Search" />
     </div>
     <div class="App-bar-navigation">
       <div class="App-input">
@@ -30,12 +30,10 @@
         </div>
       </div>
     </div>
-    <hr>
-
-    <hr>
-    <button type="button" (click)="goToPrevPage()" [disabled]="currentPageNo===1">previousPage</button>
-    <button type="button" (click)="goToNextPage()" [disabled]="currentPageNo===maxNumberOfPages">nextPage</button>
-
+  </div>
+  <div class="App-btns-container">
+    <button type="button" (click)="goToNextPage()" [disabled]="currentPageNo===maxNumberOfPages">Next page</button>
+    <button type="button" (click)="goToPrevPage()" [disabled]="currentPageNo===1">Previous page</button>
   </div>
 
 </div>
