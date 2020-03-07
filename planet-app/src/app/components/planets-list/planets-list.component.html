@@ -22,18 +22,18 @@
     </div>
   </div>
 
-  <div class="">
-    <div *ngFor="let planet of planetsToDisplay | slice:sliceBegin:sliceEnd; index as i" class="">
-      <div>
-        <div>
-          <p>{{i+1}} {{planet.name}} </p>
-        </div>
+  <div class="App-list">
+    <div *ngFor="let planet of planetsToDisplay | slice:sliceBegin:sliceEnd; index as i" class="App-list-element">
+
+      <div >
+        <p>{{i+1}} {{planet.name}} </p>
       </div>
+
     </div>
   </div>
   <div class="App-btns-container">
-    <button type="button" (click)="goToNextPage()" [disabled]="currentPageNo===maxNumberOfPages">Next page</button>
-    <button type="button" (click)="goToPrevPage()" [disabled]="currentPageNo===1">Previous page</button>
+    <button type="button" (click)="goToNextPage()" [disabled]="currentPageNo===maxNumberOfPages">Next</button>
+    <button type="button" (click)="goToPrevPage()" [disabled]="currentPageNo===1">Previous</button>
   </div>
 
 </div>
