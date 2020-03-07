@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { PlanetsDto, Planet } from 'src/app/dto';
 import { PlanetsService } from 'src/app/services/planets.service';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-planets-list',
@@ -20,10 +23,20 @@ export class PlanetsListComponent implements OnInit {
   arrElementsPerPage = [5, 10, 25, 100];
   sliceBegin = 0;
   sliceEnd = 0;
-  maxNumberOfPages: number;
-  currentPageNumber: number;
 
-  constructor(private planetsService: PlanetsService) { }
+  maxNumberOfPages: number;
+  currentPageNo: number;
+  pageNumberQueryChanged = new Subject<number>();
+
+  constructor(private planetsService: PlanetsService) {
+    this.pageNumberQueryChanged
+      .pipe(debounceTime(800),
+        distinctUntilChanged()
+      )
+      .subscribe(model => {
+        this.setUpPageNoAfterChange(model);
+      });
+  }
 
   ngOnInit() {
     this.initPlanetList();
@@ -44,14 +57,14 @@ export class PlanetsListComponent implements OnInit {
       );
   }
 
-  private setUpPageCounter() {
-    this.maxNumberOfPages = Math.ceil(this.maxAPINumberOfListEl / this.noElementsPerPage)
-    this.currentPageNumber = Math.ceil(this.sliceBegin / this.noElementsPerPage) + 1
-  }
-
   private setUpSliceList() {
     this.sliceBegin = this.sliceEnd;
     this.sliceEnd = this.sliceBegin + this.noElementsPerPage;
+  }
+
+  private setUpPageCounter() {
+    this.maxNumberOfPages = Math.ceil(this.maxAPINumberOfListEl / this.noElementsPerPage)
+    this.currentPageNo = Math.ceil(this.sliceBegin / this.noElementsPerPage) + 1
   }
 
   private setUpListElementsView(results: Planet[]) {
@@ -79,7 +92,7 @@ export class PlanetsListComponent implements OnInit {
   }
 
   onChangeNoElements(newValue) {
-    if (this.noElementsPerPage < +newValue) {
+    if (this.noElementsPerPage < newValue) {
       this.sliceBegin = 0;
     }
     this.noElementsPerPage = +newValue;
@@ -98,6 +111,32 @@ export class PlanetsListComponent implements OnInit {
     this.sliceEnd = this.sliceBegin;
     this.sliceBegin = this.sliceBegin - this.noElementsPerPage;
     this.setUpPageCounter();
+  }
+
+  onChangePageNumber(newValue: number) {
+    this.pageNumberQueryChanged.next(newValue);
+  }
+
+  private setUpPageNoAfterChange(newValue: number) {
+    if (newValue < 1) {
+      this.currentPageNo = 1;
+      this.sliceBegin = 0;
+      this.sliceEnd = this.sliceBegin + this.noElementsPerPage;
+    }
+
+    if (newValue > this.maxNumberOfPages) {
+      this.currentPageNo = this.maxNumberOfPages;
+      this.sliceBegin = this.noElementsPerPage * this.maxNumberOfPages - this.noElementsPerPage;
+      this.sliceEnd = this.maxAPINumberOfListEl;
+
+      this.checkIfCanFetchMoreElements();
+    } else {
+      this.currentPageNo = newValue;
+      this.sliceBegin = this.noElementsPerPage * newValue - this.noElementsPerPage;
+      this.sliceEnd = this.sliceBegin + this.noElementsPerPage;
+
+      this.checkIfCanFetchMoreElements();
+    }
   }
 
 }

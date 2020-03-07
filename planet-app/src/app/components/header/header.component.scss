@@ -1,21 +1,25 @@
 @import '../../../assets/config/colors';
 @import '../../../assets/config/breakpoints';
 
-
-.App-list-header {
-  background-color: $secondary-color;
+.App-header {
+  padding: 5px;
   text-align: center;
-  padding: 0 5px;
-  strong {
-    color: $accent-color
+  .App-logo {
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+    margin-bottom: 2px;
   }
 }
 
 @media (min-width: $md) {}
 
 @media (min-width: $lg) {
-  .App-list-header {
-    padding: 0 20px;
+  .App-header {
+    padding: 20px;
+    .App-logo {
+      width: 200px;
+    }
   }
 }
 
