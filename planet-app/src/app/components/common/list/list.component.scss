@@ -1,9 +1,39 @@
+@import '../../../../assets/config/colors';
+@import '../../../../assets/config/breakpoints';
+
 .App-list {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column;
+  padding: 20px 0;
 }
 
 .App-list-element {
-  width: 20%;
+  background-color: $background-accent-box;
+  box-shadow: $second-accent-box-shadow;
+  margin: 15px 0;
+  cursor: pointer;
 }
+
+@media (min-width: $md) {
+  .App-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+
+  .App-list-element {
+    width: 45%;
+    margin: 15px;
+  }
+}
+
+@media (min-width: $lg) {
+  .App-list-element {
+    width: 30%;
+  }
+}
+
+@media (min-width: $xl) {
+}
+

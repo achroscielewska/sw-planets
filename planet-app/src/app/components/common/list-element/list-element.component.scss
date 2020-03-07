@@ -1,0 +1,9 @@
+@import '../../../../assets/config/colors';
+
+.App-element-header {
+  background-color: $second-accent-color;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 10px 0;
+  font-weight: 600;
+}

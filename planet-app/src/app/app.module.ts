@@ -9,8 +9,8 @@ import {
   NoContentComponent,
   HeaderComponent,
   PlanetsListComponent } from './components/index';
-import { ListElementComponent } from './components/common/list-element/list-element.component';
-import { ListComponent } from './components/common/list/list.component';
+import { ListElementComponent, ListComponent } from './components/common/index';
+
 
 @NgModule({
   declarations: [
