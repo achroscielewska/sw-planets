@@ -90,16 +90,6 @@
   }
 }
 
-.App-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.App-list-element {
-  width: 20%;
-}
-
 @media (min-width: $md) {
   .App-bar {
     flex-direction: row;

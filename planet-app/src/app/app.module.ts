@@ -9,13 +9,17 @@ import {
   NoContentComponent,
   HeaderComponent,
   PlanetsListComponent } from './components/index';
+import { ListElementComponent } from './components/common/list-element/list-element.component';
+import { ListComponent } from './components/common/list/list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlanetsListComponent,
     NoContentComponent,
-    HeaderComponent
+    HeaderComponent,
+    ListElementComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
