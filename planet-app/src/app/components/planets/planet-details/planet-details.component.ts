@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { PlanetsService } from 'src/app/services/planets.service';
-import { PlanetDto, PersonDto } from 'src/app/dto';
+import { PlanetDto, PersonDto, FilmsDto } from 'src/app/dto';
 
 @Component({
   selector: 'app-planet-details',
@@ -16,10 +16,14 @@ export class PlanetDetailsComponent implements OnInit, OnDestroy {
   private resident$: Observable<PersonDto>;
   private residentSubscription: Subscription;
 
+  private film$: Observable<FilmsDto>;
+  private filmSubscription: Subscription;
+
   planet: PlanetDto;
   terrainArray: string[];
 
   residentsList: PersonDto[];
+  filmsList: FilmsDto[];
 
   showResidentsList: boolean;
   showFilmsList: boolean;
@@ -31,6 +35,7 @@ export class PlanetDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.residentsList = [];
+    this.filmsList = [];
     this.showResidentsList = false;
     this.showFilmsList = false;
     this.route.paramMap.subscribe(
@@ -41,7 +46,14 @@ export class PlanetDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.planetSubscription.unsubscribe();
-    this.residentSubscription.unsubscribe();
+
+    if (this.residentsList.length) {
+      this.residentSubscription.unsubscribe();
+    }
+
+    if (this.filmsList.length) {
+      this.filmSubscription.unsubscribe();
+    }
   }
 
   handelResponse(paramMap: ParamMap) {
@@ -80,8 +92,21 @@ export class PlanetDetailsComponent implements OnInit, OnDestroy {
   }
 
   seeFilms() {
-    console.log("see films")
     this.showFilmsList = true;
+
+    if (!this.filmsList.length) {
+      this.planet.films.forEach((url: string) => {
+        const filmUrlID = url.substring(
+          url.lastIndexOf('films/') + 6,
+          url.lastIndexOf('/')
+        );
+        this.film$ = this.planetsService.getPlanetFilm(filmUrlID);
+        this.filmSubscription = this.film$.subscribe(
+          (result: FilmsDto) => { this.filmsList.push(result); },
+          (err) => console.error(err)
+        );
+      });
+    }
   }
 
   seeLessFilms() {

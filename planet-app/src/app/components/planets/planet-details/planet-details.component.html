@@ -67,13 +67,14 @@
       <div>
         <p class="App-title">Residents no of <span class="App-accent">{{planet.name}}:</span><span
             class="App-planet-content">{{planet.residents.length}}</span></p>
-        <p class="App-link-see-more" *ngIf="planet.residents.length && !showResidentsList"><a (click)="seeResidents()">See more</a></p>
+        <p class="App-link-see-more" *ngIf="planet.residents.length && !showResidentsList"><a
+            (click)="seeResidents()">See more</a></p>
         <p class="App-link-see-less" *ngIf="showResidentsList"><a (click)="seeLessResidents()">See less</a></p>
       </div>
       <div *ngIf="showResidentsList">
 
         <div *ngFor="let resident of residentsList index as i">
-         {{resident.name}}
+          {{resident.name}}
         </div>
       </div>
     </div>
@@ -82,11 +83,15 @@
       <div>
         <p class="App-title">Films no that <span class="App-accent">{{planet.name}} </span>appeared in: <span
             class="App-planet-content">{{planet.films.length}}</span></p>
-        <p class="App-link-see-more" *ngIf="planet.films.length && !showFilmsList"><a (click)="seeFilms()">See more</a></p>
+        <p class="App-link-see-more" *ngIf="planet.films.length && !showFilmsList"><a (click)="seeFilms()">See more</a>
+        </p>
         <p class="App-link-see-less" *ngIf="showFilmsList"><a (click)="seeLessFilms()">See less</a></p>
       </div>
       <div *ngIf="showFilmsList">
-        <div>TEST</div>
+
+        <div *ngFor="let film of filmsList index as i">
+          {{film.title}}
+        </div>
       </div>
     </div>
 

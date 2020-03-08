@@ -37,3 +37,20 @@ export interface PersonDto {
   starships: string[];
   url: string;
 }
+
+export interface FilmsDto {
+  title: string;
+  episode_id: string;
+  opening_crawl: string;
+  director: string;
+  producer: string;
+  release_date: string;
+  films: string[];
+  characters: string;
+  starships: string;
+  species: string;
+  vehicles: string;
+  created: string;
+  edited: string;
+  url: string;
+}

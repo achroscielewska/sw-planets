@@ -7,5 +7,8 @@ export const environment = {
   peopleUrl: {
     getList: `${API_URL}/people`
   },
+  filmsUrl: {
+    getList: `${API_URL}/films`
+  },
   production: false
 };
