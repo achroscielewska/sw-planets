@@ -1,9 +1,9 @@
 @import '../../../../assets/config/colors';
 @import '../../../../assets/config/breakpoints';
 
-.App-film-list-element {
-  background-color: $green-accent-color;
-  border: 3px solid $green-accent-color;
+.App-person-list-element {
+  background-color: $red-accent-color;
+  border: 3px solid $red-accent-color;
   margin: 5px 0;
   padding: 5px;
   text-align: center;
@@ -11,14 +11,14 @@
 }
 
 @media (min-width: $md) {
-  .App-film-list-element {
+  .App-person-list-element {
     width: 45%;
     margin: 5px;
   }
 }
 
 @media (min-width: $lg) {
-  .App-film-list-element {
+  .App-person-list-element {
     width: 30%;
   }
 }

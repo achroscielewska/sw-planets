@@ -16,7 +16,8 @@ import {
 import {
   PlanetsListContainerComponent,
   PlanetsListElementComponent,
-  FilmsListContainerComponent
+  FilmsListContainerComponent,
+  ResidentsListContainerComponent
 } from './components/common/index';
 
 @NgModule({
@@ -28,7 +29,8 @@ import {
     PlanetsListElementComponent,
     PlanetsListContainerComponent,
     PlanetDetailsComponent,
-    FilmsListContainerComponent
+    FilmsListContainerComponent,
+    ResidentsListContainerComponent
   ],
   imports: [
     BrowserModule,
