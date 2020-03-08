@@ -1,0 +1,26 @@
+@import "../../../../assets/config/colors";
+@import "../../../../assets/config/breakpoints";
+
+.App-btns-nav-container {
+  button:hover:enabled {
+    border: 2px solid $accent-color;
+    box-shadow: $accent-box-shadow;
+  }
+}
+
+@media (min-width: $md) {
+  .App-btns-nav-container {
+    button {
+      width: 20%;
+    }
+  }
+}
+
+
+
+@media (min-width: $lg) {}
+
+
+
+@media (min-width: $xl) {
+}

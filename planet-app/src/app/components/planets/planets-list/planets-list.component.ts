@@ -65,8 +65,8 @@ export class PlanetsListComponent implements OnInit {
   }
 
   private setUpPageCounter() {
-    this.maxNumberOfPages = Math.ceil(this.maxAPINumberOfListEl / this.noElementsPerPage)
-    this.currentPageNo = Math.ceil(this.sliceBegin / this.noElementsPerPage) + 1
+    this.maxNumberOfPages = Math.ceil(this.maxAPINumberOfListEl / this.noElementsPerPage);
+    this.currentPageNo = Math.ceil(this.sliceBegin / this.noElementsPerPage) + 1;
   }
 
   private setUpListElementsView(results: PlanetDto[]) {

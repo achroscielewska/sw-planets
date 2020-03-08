@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { PlanetsService } from 'src/app/services/planets.service';
+import { PlanetDto } from 'src/app/dto';
 
 @Component({
   selector: 'app-planet-details',
@@ -12,7 +13,7 @@ export class PlanetDetailsComponent implements OnInit, OnDestroy {
   private planet$: Observable<any>;
   private planetSubscription: Subscription;
 
-  planet: any;
+  planet: PlanetDto;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,14 +32,14 @@ export class PlanetDetailsComponent implements OnInit, OnDestroy {
   }
 
  handelResponse(paramMap: ParamMap) {
-  const url = paramMap.get('url');
-  this.planet$ = this.planetsService.getPlanet(url);
+  const id = paramMap.get('id');
+  this.planet$ = this.planetsService.getPlanet(id);
 
-  this.planetSubscription = this.planet$.subscribe(planet => {
+  this.planetSubscription = this.planet$.subscribe((planet: PlanetDto) => {
     this.planet = planet;
 
-    console.log(this.planet)
-  })
+    console.log(this.planet);
+  });
  }
 
 }

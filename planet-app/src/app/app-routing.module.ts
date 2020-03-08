@@ -12,7 +12,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: ':url',
+        path: ':id',
         component: PlanetDetailsComponent,
       },
     ]},

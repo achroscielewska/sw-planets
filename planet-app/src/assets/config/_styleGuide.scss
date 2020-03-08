@@ -46,6 +46,10 @@ button:disabled  {
   color: $primary-color;
 }
 
+.App-content-wrapper {
+  padding: 10px;
+  max-width: 100%;
+}
 
 @media (min-width: $md) {
   body {
@@ -54,7 +58,10 @@ button:disabled  {
 }
 
 @media (min-width: $lg) {
-
+  .App-content-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+  }
 }
 
 @media (min-width: $xl) {

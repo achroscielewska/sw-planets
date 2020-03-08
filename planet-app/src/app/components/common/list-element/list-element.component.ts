@@ -15,7 +15,7 @@ export class ListElementComponent implements OnInit {
     this.planetUrlID = this.planet.url.substring(
       this.planet.url.lastIndexOf('planets/') + 8,
       this.planet.url.lastIndexOf('/')
-    )
+    );
   }
 
 }

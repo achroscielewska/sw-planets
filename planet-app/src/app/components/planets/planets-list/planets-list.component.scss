@@ -13,8 +13,8 @@
   }
 }
 
-.App-list-header-wrapper {
-  padding: 60px 10px 0 10px;
+.App-list-wrapper {
+  padding: 60px 10px 10px 10px;
   max-width: 100%;
 }
 
@@ -106,8 +106,8 @@
 }
 
 @media (min-width: $lg) {
-  .App-list-header-wrapper {
-    padding-top: 50px;
+  .App-list-wrapper {
+    padding: 50px 10px 10px 10px;
     max-width: 960px;
     margin: 0 auto;
   }
