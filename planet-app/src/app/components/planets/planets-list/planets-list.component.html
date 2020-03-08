@@ -22,7 +22,9 @@
     </div>
   </div>
 
-  <app-list [planetsToDisplay]="planetsToDisplay" [sliceBegin]="sliceBegin" [sliceEnd]="sliceEnd"></app-list>
+  <div>
+    <app-list [planetsToDisplay]="planetsToDisplay" [sliceBegin]="sliceBegin" [sliceEnd]="sliceEnd"></app-list>
+  </div>
 
   <div class="App-btns-container">
     <button type="button" (click)="goToNextPage()" [disabled]="currentPageNo===maxNumberOfPages">Next</button>

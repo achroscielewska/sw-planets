@@ -3,60 +3,72 @@
     <button type="button" [routerLink]="['../']" routerLinkActive="active">Back to list</button>
   </div>
 
-  <div class="App-planet-details">
-    <div>
-      <div class="App-planet-header">
-        <p>{{planet.name}} </p>
-      </div>
+  <div *ngIf="planet">
+    <div class="App-planet-details">
+      <div>
+        <div class="App-planet-header">
+          <p>{{planet.name}} </p>
+        </div>
 
-      <div class="App-planet-line">
-        <div class="App-planet-box App-planet-small-box">
-          <p class="App-title">Rotation period</p>
-          <p class="App-planet-content">{{planet.rotation_period}} </p>
+        <div class="App-planet-line">
+          <div class="App-planet-box App-planet-small-box">
+            <p class="App-title">Rotation period</p>
+            <p class="App-planet-content">{{planet.rotation_period}} </p>
+          </div>
+          <div class="App-planet-box App-planet-small-box">
+            <p class="App-title">Orbital period</p>
+            <p class="App-planet-content">{{planet.orbital_period}} </p>
+          </div>
+          <div class="App-planet-box App-planet-small-box">
+            <p class="App-title">Diameter</p>
+            <p class="App-planet-content">{{planet.diameter | number}} </p>
+          </div>
         </div>
-        <div class="App-planet-box App-planet-small-box">
-          <p class="App-title">Orbital period</p>
-          <p class="App-planet-content">{{planet.orbital_period}} </p>
-        </div>
-        <div class="App-planet-box App-planet-small-box">
-          <p class="App-title">Diameter</p>
-          <p class="App-planet-content">{{planet.diameter | number}} </p>
-        </div>
-      </div>
 
-      <div class="App-planet-line">
-        <div class="App-planet-box App-planet-small-box">
-          <p class="App-title">Climate</p>
-          <p class="App-planet-content">{{planet.climate}} </p>
+        <div class="App-planet-line">
+          <div class="App-planet-box App-planet-small-box">
+            <p class="App-title">Climate</p>
+            <p class="App-planet-content">{{planet.climate}} </p>
+          </div>
+          <div class="App-planet-box App-planet-middle-box">
+            <p class="App-title">Gravity</p>
+            <p class="App-planet-content">{{planet.gravity}} </p>
+          </div>
         </div>
-        <div class="App-planet-box App-planet-middle-box">
-          <p class="App-title">Gravity</p>
-          <p class="App-planet-content">{{planet.gravity}} </p>
-        </div>
-      </div>
 
-      <div class="App-planet-line">
-        <div class="App-planet-box App-planet-big-box">
-          <p class="App-title">Terrain</p>
-          <div class="App-name-elements">
-            <div *ngFor="let terrain of terrainArray index as i">
-              <p>{{terrain}}</p>
+        <div class="App-planet-line">
+          <div class="App-planet-box App-planet-big-box">
+            <p class="App-title">Terrain</p>
+            <div class="App-name-elements">
+              <div *ngFor="let terrain of terrainArray index as i">
+                <p>{{terrain}}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="App-planet-line">
-        <div class="App-planet-box App-planet-small-box">
-          <p class="App-title">Surface water</p>
-          <p class="App-planet-content">{{planet.surface_water}} </p>
+        <div class="App-planet-line">
+          <div class="App-planet-box App-planet-small-box">
+            <p class="App-title">Surface water</p>
+            <p class="App-planet-content">{{planet.surface_water}} </p>
+          </div>
+          <div class="App-planet-box App-planet-small-box">
+            <p class="App-title">Population</p>
+            <p class="App-planet-content">
+              <span *ngIf="planet.population !== 'unknown'">{{planet.population | number}}</span>
+              <span *ngIf="planet.population === 'unknown'">{{planet.population}}</span>
+            </p>
+          </div>
         </div>
-        <div class="App-planet-box App-planet-small-box">
-          <p class="App-title">Population</p>
-          <p class="App-planet-content">{{planet.population | number}} </p>
-        </div>
       </div>
+
     </div>
 
+    <div class="App-planet-residents">
+      <p class="App-title">Residents no of <span class="App-accent">{{planet.name}}:</span><span
+          class="App-planet-content">{{planet.residents.length}}</span></p>
+      <p class="App-link-see-more" *ngIf="planet.residents.length"><a (click)="seeResidents()">See more</a></p>
+    </div>
   </div>
+
 
 </div>

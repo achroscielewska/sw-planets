@@ -1,4 +1,4 @@
-<div class="App-element">
+<div class="App-element" *ngIf="planet">
   <div>
     <div class="App-element-header">
       <p>{{planet.name}} </p>
@@ -17,7 +17,10 @@
 
     <div class="App-element-box App-big-box">
       <p class="App-title">Population</p>
-      <p class="App-planet-content">{{planet.population | number}} </p>
+      <p class="App-planet-content">
+        <span *ngIf="planet.population !== 'unknown'">{{planet.population | number}}</span>
+        <span *ngIf="planet.population === 'unknown'">{{planet.population}}</span>
+      </p>
     </div>
 
   </div>

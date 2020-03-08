@@ -6,9 +6,12 @@ $input-color: #282727;
 $text-color: #AAA;
 
 $accent-color: #EDEC51;
-$second-accent-color: #3273C5;
-
 $accent-box-shadow: 0 0 6px 2px rgba(237, 236, 81, 0.7);
+
+$second-accent-color: #3273C5;
 $second-accent-box-shadow: 0 0 6px $second-accent-color, 0 0 6px $second-accent-color, 0 0;;
 $background-accent-box: rgba(50, 115, 197, 0.2);
 
+$red-accent-color: #C8362E;
+$red-accent-box-shadow: 0 0 6px $red-accent-color, 0 0 6px $red-accent-color, 0 0;;
+$background-red-accent-box: rgba(226, 106, 106, 0.2);

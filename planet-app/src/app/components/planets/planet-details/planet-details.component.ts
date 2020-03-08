@@ -40,10 +40,12 @@ export class PlanetDetailsComponent implements OnInit, OnDestroy {
     this.planet = planet;
 
     this.terrainArray = this.planet.terrain.split(',')
-
-
-    console.log(this.planet);
   });
  }
 
+ seeResidents() {
+  console.log("see residents")
+ }
 }
+
+
