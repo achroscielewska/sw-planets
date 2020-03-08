@@ -15,6 +15,8 @@ export class PlanetDetailsComponent implements OnInit, OnDestroy {
 
   planet: PlanetDto;
   terrainArray: string[];
+  showResidentsList: boolean;
+  showFilmsList: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,12 +41,28 @@ export class PlanetDetailsComponent implements OnInit, OnDestroy {
   this.planetSubscription = this.planet$.subscribe((planet: PlanetDto) => {
     this.planet = planet;
 
-    this.terrainArray = this.planet.terrain.split(',')
+    this.terrainArray = this.planet.terrain.split(',');
+    this.showResidentsList = false;
+    this.showFilmsList = false;
   });
  }
 
  seeResidents() {
   console.log("see residents")
+  this.showResidentsList = true;
+ }
+
+ seeLessResidents() {
+  this.showResidentsList = false;
+ }
+
+ seeFilms() {
+  console.log("see films")
+  this.showFilmsList = true;
+ }
+
+ seeLessFilms() {
+  this.showFilmsList = false;
  }
 }
 

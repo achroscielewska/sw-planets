@@ -64,10 +64,30 @@
     </div>
 
     <div class="App-planet-residents">
-      <p class="App-title">Residents no of <span class="App-accent">{{planet.name}}:</span><span
-          class="App-planet-content">{{planet.residents.length}}</span></p>
-      <p class="App-link-see-more" *ngIf="planet.residents.length"><a (click)="seeResidents()">See more</a></p>
+      <div>
+        <p class="App-title">Residents no of <span class="App-accent">{{planet.name}}:</span><span
+            class="App-planet-content">{{planet.residents.length}}</span></p>
+        <p class="App-link-see-more" *ngIf="planet.residents.length && !showResidentsList"><a (click)="seeResidents()">See more</a></p>
+        <p class="App-link-see-less" *ngIf="showResidentsList"><a (click)="seeLessResidents()">See less</a></p>
+      </div>
+      <div *ngIf="showResidentsList">
+        <div>TEST</div>
+      </div>
     </div>
+
+    <div class="App-planet-films">
+      <div>
+        <p class="App-title">Films no that <span class="App-accent">{{planet.name}} </span>appeared in: <span
+            class="App-planet-content">{{planet.films.length}}</span></p>
+        <p class="App-link-see-more" *ngIf="planet.films.length && !showFilmsList"><a (click)="seeFilms()">See more</a></p>
+        <p class="App-link-see-less" *ngIf="showFilmsList"><a (click)="seeLessFilms()">See less</a></p>
+      </div>
+      <div *ngIf="showFilmsList">
+        <div>TEST</div>
+      </div>
+    </div>
+
+
   </div>
 
 

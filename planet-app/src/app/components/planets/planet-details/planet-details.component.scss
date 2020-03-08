@@ -10,8 +10,8 @@
 
 .App-planet-details {
   background-color: $background-accent-box;
-  border: 3px solid $second-accent-color;
-  box-shadow: $second-accent-box-shadow;
+  border: 3px solid $blue-accent-color;
+  box-shadow: $blue-accent-box-shadow;
   padding: 10px;
   margin: 10px;
 }
@@ -25,8 +25,26 @@
   .App-accent {
     color: $red-accent-color;
   }
-  .App-link-see-more:hover a {
+  .App-link-see-more:hover a,
+  .App-link-see-less:hover a {
     border-bottom: 1px solid $red-accent-color;
+    color: $hover-color;
+  }
+}
+
+
+.App-planet-films {
+  background-color: $background-green-accent-box;
+  border: 3px solid $green-accent-color;
+  box-shadow: $green-accent-box-shadow;
+  padding: 10px;
+  margin: 10px;
+  .App-accent {
+    color: $green-accent-color;
+  }
+  .App-link-see-more:hover a,
+  .App-link-see-less:hover a {
+    border-bottom: 1px solid $green-accent-color;
     color: $hover-color;
   }
 }
@@ -34,7 +52,7 @@
 .App-planet-header {
   text-align: center;
   p {
-    color: $second-accent-color;
+    color: $blue-accent-color;
     font-size: 1.5rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -49,8 +67,8 @@
 
 .App-planet-box {
   background-color: $background-accent-box;
-  border: 1px solid $second-accent-color;
-  box-shadow: $second-accent-box-shadow;
+  border: 1px solid $blue-accent-color;
+  box-shadow: $blue-accent-box-shadow;
   padding: 10px;
   text-align: center;
 }
@@ -84,7 +102,7 @@
   flex-wrap: wrap;
   justify-content: center;
   div {
-    background-color: $second-accent-color;
+    background-color: $blue-accent-color;
     padding: 10px;
     margin: 5px;
   }

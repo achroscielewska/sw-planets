@@ -26,8 +26,8 @@
     text-align: center;
   }
   button:hover:enabled {
-    border: 2px solid $second-accent-color;
-    box-shadow: $second-accent-box-shadow;
+    border: 2px solid $blue-accent-color;
+    box-shadow: $blue-accent-box-shadow;
   }
 }
 
@@ -38,7 +38,7 @@
 .App-element-header {
   text-align: center;
   p {
-    color: $second-accent-color;
+    color: $blue-accent-color;
     font-size: 1.3rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -53,8 +53,8 @@
 
 .App-element-box {
   background-color: $background-accent-box;
-  border: 1px solid $second-accent-color;
-  box-shadow: $second-accent-box-shadow;
+  border: 1px solid $blue-accent-color;
+  box-shadow: $blue-accent-box-shadow;
   padding: 10px;
   text-align: center;
 }
