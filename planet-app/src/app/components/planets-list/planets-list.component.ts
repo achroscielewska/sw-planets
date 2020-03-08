@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PlanetsDto, Planet } from 'src/app/dto';
+import { PlanetsDto, PlanetDto } from 'src/app/dto';
 import { PlanetsService } from 'src/app/services/planets.service';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operato
   styleUrls: ['./planets-list.component.scss']
 })
 export class PlanetsListComponent implements OnInit {
-  planetsToDisplay: Planet[] = [];
+  planetsToDisplay: PlanetDto[] = [];
 
   maxAPINumberOfListEl: number;
   maxAPINumberOfElPerPage: number;
@@ -69,7 +69,7 @@ export class PlanetsListComponent implements OnInit {
     this.currentPageNo = Math.ceil(this.sliceBegin / this.noElementsPerPage) + 1
   }
 
-  private setUpListElementsView(results: Planet[]) {
+  private setUpListElementsView(results: PlanetDto[]) {
     this.planetsToDisplay.push(...results);
     this.numberOfFetchedEl = this.planetsToDisplay.length;
     this.nextPageToFetch++;

@@ -2,10 +2,10 @@ export interface PlanetsDto {
   count: number;
   previous: string;
   next: string;
-  results: Planet[];
+  results: PlanetDto[];
 }
 
-export interface Planet {
+export interface PlanetDto {
   name: string;
   diameter: string;
   rotation_period: string;

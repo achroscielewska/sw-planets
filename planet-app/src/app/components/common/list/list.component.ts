@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Planet } from 'src/app/dto';
+import { PlanetDto } from 'src/app/dto';
 
 @Component({
   selector: 'app-list',
@@ -7,7 +7,7 @@ import { Planet } from 'src/app/dto';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  @Input() planetsToDisplay: Planet[];
+  @Input() planetsToDisplay: PlanetDto[];
   @Input() sliceBegin: number;
   @Input() sliceEnd: number;
 
