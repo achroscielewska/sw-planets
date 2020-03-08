@@ -88,10 +88,7 @@
         <p class="App-link-see-less" *ngIf="showFilmsList"><a (click)="seeLessFilms()">See less</a></p>
       </div>
       <div *ngIf="showFilmsList">
-
-        <div *ngFor="let film of filmsList index as i">
-          {{film.title}}
-        </div>
+        <app-films-list-container [filmsToDisplay]="filmsList"></app-films-list-container>
       </div>
     </div>
 

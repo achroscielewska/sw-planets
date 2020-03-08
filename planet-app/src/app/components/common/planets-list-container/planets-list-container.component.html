@@ -1,5 +1,5 @@
 <div class="App-list">
-<div *ngFor="let planet of planetsToDisplay | slice:sliceBegin:sliceEnd; index as i" class="App-planets-list-element">
-  <app-planets-list-element [planet]="planet"></app-planets-list-element>
-</div>
+  <div *ngFor="let planet of planetsToDisplay | slice:sliceBegin:sliceEnd; index as i" class="App-planets-list-element">
+    <app-planets-list-element [planet]="planet"></app-planets-list-element>
+  </div>
 </div>

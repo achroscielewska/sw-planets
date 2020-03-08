@@ -32,7 +32,6 @@
   }
 }
 
-
 .App-planet-films {
   background-color: $background-green-accent-box;
   border: 3px solid $green-accent-color;
@@ -91,7 +90,6 @@
 }
 
 .App-planet-content {
-  font-size: 1.5rem;
   padding: 5px;
   color: $text-color;
 }
@@ -114,13 +112,11 @@
       width: 20%;
     }
   }
+  .App-planet-content {
+    font-size: 1.5rem;
+  }
 }
-
-
 
 @media (min-width: $lg) {}
 
-
-
-@media (min-width: $xl) {
-}
+@media (min-width: $xl) {}
