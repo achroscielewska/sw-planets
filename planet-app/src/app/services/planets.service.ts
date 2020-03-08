@@ -21,5 +21,10 @@ export class PlanetsService {
       .pipe(map((res: PlanetsDto) => res));
   }
 
-
+  getPlanet(url: string): Observable<any> {
+    console.log(url)
+    return this.httpClient
+      .get(`${env.planetsUrl.getList}/${url}`)
+      .pipe(map((res: any) => res));
+  }
 }

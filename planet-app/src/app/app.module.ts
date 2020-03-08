@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import {
   NoContentComponent,
   HeaderComponent,
-  PlanetsListComponent } from './components/index';
+  PlanetsListComponent,
+  PlanetDetailsComponent
+} from './components/index';
 import { ListElementComponent, ListComponent } from './components/common/index';
-
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ListElementComponent, ListComponent } from './components/common/index';
     NoContentComponent,
     HeaderComponent,
     ListElementComponent,
-    ListComponent
+    ListComponent,
+    PlanetDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -8,11 +8,14 @@ import { Planet } from 'src/app/dto';
 })
 export class ListElementComponent implements OnInit {
   @Input() planet: Planet;
-  constructor() {
-
-  }
+  planetUrlID: string;
+  constructor() { }
 
   ngOnInit(): void {
+    this.planetUrlID = this.planet.url.substring(
+      this.planet.url.lastIndexOf('planets/') + 8,
+      this.planet.url.lastIndexOf('/')
+    )
   }
 
 }
