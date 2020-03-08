@@ -8,6 +8,71 @@
   }
 }
 
+.App-planet-details {
+  background-color: $background-accent-box;
+  border: 3px solid $second-accent-color;
+  box-shadow: $second-accent-box-shadow;
+  padding: 10px;
+}
+
+.App-planet-header {
+  text-align: center;
+  p {
+    color: $second-accent-color;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
+
+.App-planet-line {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.App-planet-box {
+  background-color: $background-accent-box;
+  border: 1px solid $second-accent-color;
+  box-shadow: $second-accent-box-shadow;
+  padding: 10px;
+  text-align: center;
+}
+
+.App-planet-small-box {
+  width: 31%;
+}
+
+.App-planet-middle-box {
+  width: 64%;
+}
+
+.App-planet-big-box {
+  width: 98%;
+}
+
+.App-title {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.App-planet-content {
+  font-size: 1.5rem;
+  padding: 5px;
+}
+
+.App-name-elements {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  div {
+    background-color: $second-accent-color;
+    padding: 10px;
+    margin: 5px;
+  }
+}
+
 @media (min-width: $md) {
   .App-btns-nav-container {
     button {

@@ -14,6 +14,7 @@ export class PlanetDetailsComponent implements OnInit, OnDestroy {
   private planetSubscription: Subscription;
 
   planet: PlanetDto;
+  terrainArray: string[];
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +38,9 @@ export class PlanetDetailsComponent implements OnInit, OnDestroy {
 
   this.planetSubscription = this.planet$.subscribe((planet: PlanetDto) => {
     this.planet = planet;
+
+    this.terrainArray = this.planet.terrain.split(',')
+
 
     console.log(this.planet);
   });
