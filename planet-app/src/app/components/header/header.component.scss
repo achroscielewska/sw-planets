@@ -13,6 +13,7 @@
   left: 0;
   right: 0;
   margin: 0 auto;
+  z-index: 2;
   background-image: url(src/assets/images/background_header.jpg);
   .App-logo {
     display: block;
@@ -26,12 +27,12 @@
 
 @media (min-width: $lg) {
   .App-wrapper {
-    padding-top: 130px;
+    padding-top: 100px;
   }
   .App-header {
     padding: 20px;
     .App-logo {
-      width: 200px;
+      width: 150px;
     }
   }
 }

@@ -4,13 +4,14 @@
 .App-list {
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 .App-list-element {
   background-color: $background-accent-box;
+  border: 3px solid $second-accent-color;
   box-shadow: $second-accent-box-shadow;
-  margin: 15px 0;
+  margin: 5px 0;
   cursor: pointer;
 }
 
@@ -20,6 +21,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin: 0 auto;
+    padding: 20px 0;
   }
 
   .App-list-element {

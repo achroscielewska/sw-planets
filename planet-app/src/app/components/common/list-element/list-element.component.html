@@ -1,10 +1,28 @@
-<div>
-  <div class="App-element-header">
-    <p>{{planet.name}} </p>
+<div class="App-element">
+  <div>
+    <div class="App-element-header">
+      <p>{{planet.name}} </p>
+    </div>
+
+    <div class="App-element-boxes">
+      <div class="App-element-box App-small-box">
+        <p class="App-title">Rotation period</p>
+        <p class="App-planet-content">{{planet.rotation_period}} </p>
+      </div>
+      <div class="App-element-box App-small-box">
+        <p class="App-title">Orbital period</p>
+        <p class="App-planet-content">{{planet.orbital_period}} </p>
+      </div>
+    </div>
+
+    <div class="App-element-box App-big-box">
+      <p class="App-title">Population</p>
+      <p class="App-planet-content">{{planet.population}} </p>
+    </div>
+
   </div>
 
-  <p>{{planet.gravity}} </p>
-  <p>{{planet.climate}} </p>
-
-  <p>{{planet.population}} </p>
+  <div class="App-overlay">
+    <div class="text">Hello World</div>
+  </div>
 </div>
