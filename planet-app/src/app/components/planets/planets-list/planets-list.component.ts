@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PlanetsDto, PlanetDto } from 'src/app/dto';
 import { PlanetsService } from 'src/app/services/planets.service';
-import { Subject } from 'rxjs';
+import { Subject, Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-planets-list',
   templateUrl: './planets-list.component.html',
   styleUrls: ['./planets-list.component.scss']
 })
-export class PlanetsListComponent implements OnInit {
+export class PlanetsListComponent implements OnInit, OnDestroy {
+  private planets$: Observable<PlanetsDto>;
+  private planetsSubscription: Subscription;
+
   planetsToDisplay: PlanetDto[] = [];
 
   maxAPINumberOfListEl: number;
@@ -44,9 +45,13 @@ export class PlanetsListComponent implements OnInit {
     this.initPlanetList();
   }
 
+  ngOnDestroy(): void {
+    this.planetsSubscription.unsubscribe();
+  }
+
   private initPlanetList() {
-    this.planetsService.getPlanetsList(this.nextPageToFetch)
-      .subscribe(
+    this.planets$ = this.planetsService.getPlanetsList(this.nextPageToFetch);
+    this.planetsSubscription = this.planets$.subscribe(
         (result: PlanetsDto) => {
           this.maxAPINumberOfListEl = result.count;
           this.maxAPINumberOfElPerPage = result.results.length;

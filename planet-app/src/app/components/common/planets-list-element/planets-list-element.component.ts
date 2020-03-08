@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PlanetDto } from 'src/app/dto';
 
 @Component({
-  selector: 'app-list-element',
-  templateUrl: './list-element.component.html',
-  styleUrls: ['./list-element.component.scss']
+  selector: 'app-planets-list-element',
+  templateUrl: './planets-list-element.component.html',
+  styleUrls: ['./planets-list-element.component.scss']
 })
-export class ListElementComponent implements OnInit {
+export class PlanetsListElementComponent implements OnInit {
   @Input() planet: PlanetDto;
   planetUrlID: string;
   constructor() { }

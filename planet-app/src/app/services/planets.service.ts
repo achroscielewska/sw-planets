@@ -4,7 +4,7 @@ import { environment as env } from '../../environments/environment';
 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { PlanetsDto, PlanetDto } from '../dto';
+import { PlanetsDto, PlanetDto, PersonDto } from '../dto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +21,15 @@ export class PlanetsService {
       .pipe(map((res: PlanetsDto) => res));
   }
 
-  getPlanet(url: string): Observable<PlanetDto> {
+  getPlanet(id: string): Observable<PlanetDto> {
     return this.httpClient
-      .get(`${env.planetsUrl.getList}/${url}`)
+      .get(`${env.planetsUrl.getList}/${id}`)
       .pipe(map((res: PlanetDto) => res));
+  }
+
+  getPlanetResident(id: string): Observable<any> {
+    return this.httpClient
+    .get(`${env.peopleUrl.getList}/${id}`)
+    .pipe(map((res: PersonDto) => res));
   }
 }

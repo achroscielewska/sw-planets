@@ -7,7 +7,7 @@
   padding: 10px 0;
 }
 
-.App-list-element {
+.App-planets-list-element {
   background-color: $background-accent-box;
   border: 3px solid $blue-accent-color;
   box-shadow: $blue-accent-box-shadow;
@@ -24,14 +24,14 @@
     padding: 20px 0;
   }
 
-  .App-list-element {
+  .App-planets-list-element {
     width: 45%;
     margin: 15px;
   }
 }
 
 @media (min-width: $lg) {
-  .App-list-element {
+  .App-planets-list-element {
     width: 30%;
   }
 }

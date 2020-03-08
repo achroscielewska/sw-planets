@@ -14,8 +14,8 @@ import {
   PlanetDetailsComponent
 } from './components/planets/index';
 import {
-  ListElementComponent,
-  ListComponent
+  PlanetsListContainerComponent,
+  PlanetsListElementComponent
 } from './components/common/index';
 
 @NgModule({
@@ -24,8 +24,8 @@ import {
     PlanetsListComponent,
     NoContentComponent,
     HeaderComponent,
-    ListElementComponent,
-    ListComponent,
+    PlanetsListElementComponent,
+    PlanetsListContainerComponent,
     PlanetDetailsComponent
   ],
   imports: [

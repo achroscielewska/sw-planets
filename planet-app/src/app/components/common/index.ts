@@ -1,2 +1,2 @@
-export * from './list/list.component';
-export * from './list-element/list-element.component';
+export * from './planets-list-container/planets-list-container.component';
+export * from './planets-list-element/planets-list-element.component';

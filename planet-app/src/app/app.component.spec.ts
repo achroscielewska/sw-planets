@@ -10,24 +10,31 @@ import {
   PlanetDetailsComponent
 } from './components/planets/index';
 import {
-  ListElementComponent,
-  ListComponent
+  PlanetsListContainerComponent,
+  PlanetsListElementComponent
 } from './components/common/index';
+import { PlanetsService } from './services/planets.service';
+import { RouterModule } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        RouterModule.forRoot([])
       ],
       declarations: [
         AppComponent,
         PlanetsListComponent,
         NoContentComponent,
         HeaderComponent,
-        ListElementComponent,
-        ListComponent,
+        PlanetsListElementComponent,
+        PlanetsListContainerComponent,
         PlanetDetailsComponent
+      ],
+      providers: [
+        HttpClient
       ],
     }).compileComponents();
   }));

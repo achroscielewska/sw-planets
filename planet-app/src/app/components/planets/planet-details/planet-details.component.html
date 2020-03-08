@@ -71,7 +71,10 @@
         <p class="App-link-see-less" *ngIf="showResidentsList"><a (click)="seeLessResidents()">See less</a></p>
       </div>
       <div *ngIf="showResidentsList">
-        <div>TEST</div>
+
+        <div *ngFor="let resident of residentsList index as i">
+         {{resident.name}}
+        </div>
       </div>
     </div>
 

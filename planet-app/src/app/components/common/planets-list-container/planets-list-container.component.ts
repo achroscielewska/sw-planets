@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { PlanetDto } from 'src/app/dto';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  selector: 'app-planets-list-container',
+  templateUrl: './planets-list-container.component.html',
+  styleUrls: ['./planets-list-container.component.scss']
 })
-export class ListComponent {
+export class PlanetsListContainerComponent {
   @Input() planetsToDisplay: PlanetDto[];
   @Input() sliceBegin: number;
   @Input() sliceEnd: number;
