@@ -40,25 +40,16 @@ button {
   margin: 5px 0;
   border-radius: 5px;
 }
-button:hover:enabled {
-  border: 2px solid $accent-color;
-  box-shadow: $accent-box-shadow;
-}
+
 button:disabled  {
   background-color: $text-color;
   color: $primary-color;
 }
 
 
-
 @media (min-width: $md) {
   body {
     font-size: 16px;
-  }
-
-  button {
-    width: 20%;
-    margin: 0 5px;
   }
 }
 

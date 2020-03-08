@@ -14,17 +14,32 @@
   overflow: hidden;
   width: 100%;
   height: 0;
-  transition: .8s ease;
+  transition: 0.8s ease;
+  button {
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  button:hover:enabled {
+    border: 2px solid $second-accent-color;
+    box-shadow: $second-accent-box-shadow;
+  }
 }
 
 .App-element:hover .App-overlay {
   height: 100%;
+
 }
 
 .App-element-header {
   text-align: center;
   p {
-    color: #3273c5;
+    color: $second-accent-color;
     font-size: 1.3rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -63,4 +78,3 @@
   font-size: 1.5rem;
   padding: 5px;
 }
-
