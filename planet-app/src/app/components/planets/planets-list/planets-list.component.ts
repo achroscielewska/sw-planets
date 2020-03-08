@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlanetsDto, PlanetDto } from 'src/app/dto';
 import { PlanetsService } from 'src/app/services/planets.service';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 
 @Component({

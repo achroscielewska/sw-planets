@@ -7,11 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
   NoContentComponent,
-  HeaderComponent,
+  HeaderComponent
+} from './components/index';
+import {
   PlanetsListComponent,
   PlanetDetailsComponent
-} from './components/index';
-import { ListElementComponent, ListComponent } from './components/common/index';
+} from './components/planets/index';
+import {
+  ListElementComponent,
+  ListComponent
+} from './components/common/index';
 
 @NgModule({
   declarations: [

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NoContentComponent } from './components/index';
 import {
-  NoContentComponent,
   PlanetsListComponent,
   PlanetDetailsComponent
-} from './components';
+} from './components/planets/index';
 
 const routes: Routes = [
   {path: '', component: PlanetsListComponent},
