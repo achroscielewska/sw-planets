@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../environments/environment';
-import { map } from 'rxjs/operators';
+import { map, distinctUntilChanged, debounceTime, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { PlanetsDto, PlanetDto, PersonDto, FilmsDto } from '../dto';
 
@@ -10,7 +10,7 @@ import { PlanetsDto, PlanetDto, PersonDto, FilmsDto } from '../dto';
 })
 export class PlanetsService {
   pageQueryUrl = '?page=';
-  searchQueryUrl = '?search=';
+  searchQueryUrl = '&search=';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -37,4 +37,17 @@ export class PlanetsService {
     .get(`${env.filmsUrl.getList}/${id}`)
     .pipe(map((res: FilmsDto) => res));
   }
+
+  search(pageNumber: number, query: Observable<any>) {
+    return query.pipe(debounceTime(1000))
+      .pipe(distinctUntilChanged())
+      .pipe(switchMap((res: PlanetsDto) => this.searchPlanets(pageNumber, res)));
+  }
+
+  searchPlanets(pageNumber, query) {
+    return this.httpClient
+      .get(`${env.planetsUrl.getList}${this.pageQueryUrl}${pageNumber}${this.searchQueryUrl}${query}`)
+      .pipe(map(res => res));
+  }
+
 }

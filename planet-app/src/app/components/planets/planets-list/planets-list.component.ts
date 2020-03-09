@@ -28,17 +28,39 @@ export class PlanetsListComponent implements OnInit, OnDestroy {
   maxNumberOfPages: number;
   currentPageNo: number;
   pageNumberQueryChanged = new Subject<number>();
+  searchPlanetsByName$ = new Subject<string>();
 
-  searchInput: string;
+  searchMode: boolean;
 
   constructor(private planetsService: PlanetsService) {
     this.pageNumberQueryChanged
       .pipe(debounceTime(800),
         distinctUntilChanged()
       )
-      .subscribe(model => {
-        this.setUpPageNoAfterChange(model);
-      });
+      .subscribe(
+        (model: number) => { this.setUpPageNoAfterChange(model); },
+        (err) => console.error(err)
+      );
+
+    this.planetsService.search(this.currentPageNo = 1, this.searchPlanetsByName$)
+      .subscribe(
+        (result: PlanetsDto) => {
+          this.planetsToDisplay = result.results;
+          this.sliceBegin = 0;
+          this.sliceEnd = this.sliceBegin + this.noElementsPerPage;
+          if (this.planetsToDisplay) {
+            this.maxAPINumberOfListEl = result.count;
+            this.maxAPINumberOfElPerPage = result.results.length;
+
+            this.searchMode = true;
+            this.setUpPageCounter();
+            this.setUpListElementsView(result.results);
+          } else {
+            this.searchMode = false;
+          }
+        },
+        (err) => console.error(err)
+      );
   }
 
   ngOnInit() {
@@ -52,16 +74,16 @@ export class PlanetsListComponent implements OnInit, OnDestroy {
   private initPlanetList() {
     this.planets$ = this.planetsService.getPlanetsList(this.nextPageToFetch);
     this.planetsSubscription = this.planets$.subscribe(
-        (result: PlanetsDto) => {
-          this.maxAPINumberOfListEl = result.count;
-          this.maxAPINumberOfElPerPage = result.results.length;
+      (result: PlanetsDto) => {
+        this.maxAPINumberOfListEl = result.count;
+        this.maxAPINumberOfElPerPage = result.results.length;
 
-          this.setUpSliceList();
-          this.setUpPageCounter();
-          this.setUpListElementsView(result.results);
-        },
-        (err) => console.error(err)
-      );
+        this.setUpSliceList();
+        this.setUpPageCounter();
+        this.setUpListElementsView(result.results);
+      },
+      (err) => console.error(err)
+    );
   }
 
   private setUpSliceList() {
@@ -89,14 +111,25 @@ export class PlanetsListComponent implements OnInit, OnDestroy {
   }
 
   private fetchMoreElements() {
-    this.planetsService.getPlanetsList(this.nextPageToFetch)
-      .subscribe(
-        (result: PlanetsDto) => {
-          this.setUpListElementsView(result.results);
-        },
-        (err) => console.error(err)
-      );
+    if (this.searchMode) {
+      this.planetsService.search(this.nextPageToFetch, this.searchPlanetsByName$)
+        .subscribe(
+          (result: PlanetsDto) => {
+            this.setUpListElementsView(result.results);
+          },
+          (err) => console.error(err)
+        );
+    } else {
+      this.planetsService.getPlanetsList(this.nextPageToFetch)
+        .subscribe(
+          (result: PlanetsDto) => {
+            this.setUpListElementsView(result.results);
+          },
+          (err) => console.error(err)
+        );
+    }
   }
+
 
   onChangeNoElements(newValue) {
     if (this.noElementsPerPage < newValue) {
@@ -130,7 +163,6 @@ export class PlanetsListComponent implements OnInit, OnDestroy {
       this.sliceBegin = 0;
       this.sliceEnd = this.sliceBegin + this.noElementsPerPage;
     }
-
     if (newValue > this.maxNumberOfPages) {
       this.currentPageNo = this.maxNumberOfPages;
       this.sliceBegin = this.noElementsPerPage * this.maxNumberOfPages - this.noElementsPerPage;
@@ -145,5 +177,4 @@ export class PlanetsListComponent implements OnInit, OnDestroy {
       this.checkIfCanFetchMoreElements();
     }
   }
-
 }
