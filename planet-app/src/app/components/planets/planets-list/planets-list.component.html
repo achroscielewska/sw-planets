@@ -5,7 +5,7 @@
 <div class="App-list-wrapper">
   <div class="App-bar">
     <div class="App-input App-search-bar">
-      <input (keyup)="searchPlanetsByName$.next($event.target.value)" name="searchInput" placeholder="Search planet by name" />
+      <input [ngModel]="searchInputByName" (ngModelChange)="onChangeSearchValue($event)"  name="searchInputByName" placeholder="Search planet by name" />
     </div>
     <div class="App-bar-navigation">
       <div class="App-input">

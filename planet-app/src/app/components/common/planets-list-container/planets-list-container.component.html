@@ -1,5 +1,9 @@
-<div class="App-list">
-  <div *ngFor="let planet of planetsToDisplay | slice:sliceBegin:sliceEnd; index as i" class="App-planets-list-element">
-    <app-planets-list-element [planet]="planet"></app-planets-list-element>
+<div *ngIf="planetsToDisplay">
+  <div class="App-list">
+    <div *ngFor="let planet of planetsToDisplay | slice:sliceBegin:sliceEnd; index as i"
+      class="App-planets-list-element">
+      <app-planets-list-element [planet]="planet"></app-planets-list-element>
+    </div>
+    <div *ngIf="planetsToDisplay.length === 0">No results were found for your search</div>
   </div>
 </div>

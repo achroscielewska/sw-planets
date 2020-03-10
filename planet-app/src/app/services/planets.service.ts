@@ -28,26 +28,20 @@ export class PlanetsService {
 
   getPlanetResident(id: string): Observable<any> {
     return this.httpClient
-    .get(`${env.peopleUrl.getList}/${id}`)
-    .pipe(map((res: PersonDto) => res));
+      .get(`${env.peopleUrl.getList}/${id}`)
+      .pipe(map((res: PersonDto) => res));
   }
 
   getPlanetFilm(id: string): Observable<any> {
     return this.httpClient
-    .get(`${env.filmsUrl.getList}/${id}`)
-    .pipe(map((res: FilmsDto) => res));
+      .get(`${env.filmsUrl.getList}/${id}`)
+      .pipe(map((res: FilmsDto) => res));
   }
 
-  search(pageNumber: number, query: Observable<any>) {
-    return query.pipe(debounceTime(1000))
-      .pipe(distinctUntilChanged())
-      .pipe(switchMap((res: PlanetsDto) => this.searchPlanets(pageNumber, res)));
-  }
-
-  searchPlanets(pageNumber, query) {
+  searchPlanets(pageNumber: number, query: string): Observable<PlanetsDto> {
     return this.httpClient
       .get(`${env.planetsUrl.getList}${this.pageQueryUrl}${pageNumber}${this.searchQueryUrl}${query}`)
-      .pipe(map(res => res));
+      .pipe(map((res: PlanetsDto) => res));
   }
 
 }

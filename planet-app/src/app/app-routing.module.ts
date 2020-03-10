@@ -7,16 +7,22 @@ import {
 } from './components/planets/index';
 
 const routes: Routes = [
-  {path: '', component: PlanetsListComponent},
+  { path: 'planets', component: PlanetsListComponent },
   {
-    path: '',
+    path: 'planets',
     children: [
       {
         path: ':id',
         component: PlanetDetailsComponent,
       },
-    ]},
-  {path: '**', component: NoContentComponent},
+    ]
+  },
+  {
+    path: '',
+    redirectTo: '/planets',
+    pathMatch: 'full'
+  },
+  { path: '**', component: NoContentComponent },
 ];
 
 @NgModule({
