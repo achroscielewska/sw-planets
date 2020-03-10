@@ -3,6 +3,7 @@ import { PlanetsDto, PlanetDto } from 'src/app/dto';
 import { PlanetsService } from 'src/app/services/planets.service';
 import { Subject, Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { LoaderComponent } from '../../common';
 
 @Component({
   selector: 'app-planets-list',
@@ -70,6 +71,7 @@ export class PlanetsListComponent implements OnInit, OnDestroy {
     this.planets$ = this.planetsService.searchPlanets(this.currentPageNo, name);
     this.planetsSubscription = this.planets$.subscribe(
       (result: PlanetsDto) => {
+        LoaderComponent.hide();
         this.planetsToDisplay.push(...result.results);
 
         if (this.planetsToDisplay) {
@@ -81,6 +83,7 @@ export class PlanetsListComponent implements OnInit, OnDestroy {
       },
       (err) => console.error(err)
     );
+    LoaderComponent.show();
   }
 
   private initPlanetList() {
@@ -89,11 +92,13 @@ export class PlanetsListComponent implements OnInit, OnDestroy {
     this.planets$ = this.planetsService.getPlanetsList(this.nextPageToFetch);
     this.planetsSubscription = this.planets$.subscribe(
       (result: PlanetsDto) => {
+        LoaderComponent.hide();
         this.planetsToDisplay.push(...result.results);
         this.setUpInitListParameters(result);
       },
       (err) => console.error(err)
     );
+    LoaderComponent.show();
   }
 
   private setUpInitParameters(currentPageNo: number, nextPageToFetch: number, planetsToDisplay: [], sliceBegin: number, sliceEnd: number) {
@@ -141,20 +146,24 @@ export class PlanetsListComponent implements OnInit, OnDestroy {
       this.planetsService.searchPlanets(this.nextPageToFetch, this.searchInputByName)
         .subscribe(
           (result: PlanetsDto) => {
+            LoaderComponent.hide();
             this.planetsToDisplay.push(...result.results);
             this.setUpListElementsView();
           },
           (err) => console.error(err)
         );
+      LoaderComponent.show();
     } else {
       this.planetsService.getPlanetsList(this.nextPageToFetch)
         .subscribe(
           (result: PlanetsDto) => {
+            LoaderComponent.hide();
             this.planetsToDisplay.push(...result.results);
             this.setUpListElementsView();
           },
           (err) => console.error(err)
         );
+      LoaderComponent.show();
     }
   }
 

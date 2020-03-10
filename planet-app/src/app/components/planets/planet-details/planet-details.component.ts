@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { PlanetsService } from 'src/app/services/planets.service';
 import { PlanetDto, PersonDto, FilmsDto } from 'src/app/dto';
+import { LoaderComponent } from '../../common';
 
 @Component({
   selector: 'app-planet-details',
@@ -62,11 +63,13 @@ export class PlanetDetailsComponent implements OnInit, OnDestroy {
 
     this.planetSubscription = this.planet$.subscribe(
       (result: PlanetDto) => {
+        LoaderComponent.hide();
         this.planet = result;
         this.terrainArray = this.planet.terrain.split(',');
       },
       (err) => console.error(err)
     );
+    LoaderComponent.show();
   }
 
   seeResidents() {
