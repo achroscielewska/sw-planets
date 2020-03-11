@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlanetDetailsComponent } from './planet-details.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PlanetsService } from 'src/app/services/planets.service';
+import { RouterModule } from '@angular/router';
 
 describe('PlanetDetailsComponent', () => {
   let component: PlanetDetailsComponent;
@@ -8,7 +11,9 @@ describe('PlanetDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlanetDetailsComponent ]
+      imports: [HttpClientModule, RouterModule.forRoot([])],
+      declarations: [ PlanetDetailsComponent ],
+      providers: [PlanetsService]
     })
     .compileComponents();
   }));

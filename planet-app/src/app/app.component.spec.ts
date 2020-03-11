@@ -11,18 +11,23 @@ import {
 } from './components/planets/index';
 import {
   PlanetsListContainerComponent,
-  PlanetsListElementComponent
+  PlanetsListElementComponent,
+  LoaderComponent,
+  FilmsListContainerComponent,
+  ResidentsListContainerComponent
 } from './components/common/index';
 import { PlanetsService } from './services/planets.service';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        RouterModule.forRoot([])
+        RouterModule.forRoot([]),
+        FormsModule
       ],
       declarations: [
         AppComponent,
@@ -31,11 +36,15 @@ describe('AppComponent', () => {
         HeaderComponent,
         PlanetsListElementComponent,
         PlanetsListContainerComponent,
-        PlanetDetailsComponent
+        PlanetDetailsComponent,
+        FilmsListContainerComponent,
+        ResidentsListContainerComponent,
+        LoaderComponent
       ],
       providers: [
-        HttpClient
-      ],
+        HttpClient,
+        PlanetsService
+      ]
     }).compileComponents();
   }));
 
@@ -43,5 +52,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  })
+  });
 });

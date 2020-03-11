@@ -16,7 +16,7 @@ export class LoaderComponent {
     return timer(5000);
   }
 
-  public isVisible() {return LoaderComponent.visible; };
+  public isVisible() {return LoaderComponent.visible; }
 
 
 }

@@ -9,7 +9,5 @@ import { PersonDto } from 'src/app/dto';
 export class ResidentsListContainerComponent {
   @Input() residentsToDisplay: PersonDto[];
 
-  constructor() {
-    console.log(this.residentsToDisplay)
-  }
+  constructor() { }
 }
